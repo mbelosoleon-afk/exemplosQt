@@ -1,57 +1,69 @@
 import sys
-
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QMainWindow, QApplication, QWidget, QLabel, QListWidgetItem, \
-    QListView, QPushButton
+import modeloLista
+from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QGridLayout, QLabel, QListView, QPushButton
 
 
-class Interfaz(QMainWindow):
+class ExemploListasIntercambiables(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.setWindowTitle("Exemplo con QGridLayout")
 
-        #Título de la ventana
-        self.setWindowTitle("Exemplo con QListWidget")
+        maia = QGridLayout()
+        listaFollas = [["Folla 1", "F"], ["Documento 1", "D"], ["Folla 3", "F"], ["Folla 4","F"], ["Documento 2", "D"]]
+        self.modeloListaVisibles = modeloLista.ModeloFollas(listaFollas)
+        self.modeloListaOcultos = modeloLista.ModeloFollas()
 
-        #Ventana actual
-        caixaH = QHBoxLayout()
+        lblFollasVisibles = QLabel("Follas visibles")
+        lblFollasOcultas = QLabel("Follas ocultas")
+        btnMostrar = QPushButton("<< Mostrar")
+        btnMostrar.clicked.connect(self.on_btnMostrar_clicked)
+        btnOcultar = QPushButton("Ocultar >>")
+        btnOcultar.clicked.connect(self.on_btnOcultar_clicked)
+        btnPechar = QPushButton("Pechar")
+        btnPechar.clicked.connect(self.close)
 
-        #Bloque 1
-        caixaV1 = QVBoxLayout()
-        self.textoBloque1 = QLabel("Hojas visibles")
-        self.bloque1 = QListView() #Crea la forma de cada cuadrado
-        caixaV1.addWidget(self.textoBloque1)
-        caixaV1.addWidget(self.bloque1)
-        caixaH.addLayout(caixaV1)
+        self.lstOcultos = QListView()
+        self.lstOcultos.setModel(self.modeloListaOcultos)
+        self.lstVisibles = QListView()
+        self.lstVisibles.setModel(self.modeloListaVisibles)
 
-        #Bloque central
-        caixaVCentral = QVBoxLayout()
-        self.botonOcultar = QPushButton("Ocultar >>")
-        self.botonMostrar = QPushButton("<<Mostrar>>")
-        caixaVCentral.addWidget(self.botonOcultar)
-        caixaVCentral.addWidget(self.botonMostrar)
-        caixaH.addLayout(caixaVCentral)
+        controlInerte = QWidget()
+        controlInerte.setMinimumSize(1, 20)
 
-        #Bloque 2
-        caixaV2 = QVBoxLayout()
-        self.textoBloque2 = QLabel("Hojas ocultas")
-        self.bloque2 = QListView()
-        self.botonCerrar = QPushButton("Cerrar")
-        self.botonCerrar.setFixedSize(200,30)
-        caixaV2.addWidget(self.textoBloque2)
-        caixaV2.addWidget(self.botonCerrar, alignment= Qt.AlignmentFlag.AlignRight)
-        caixaH.addLayout(caixaV2)
+        maia.addWidget(lblFollasVisibles)
+        maia.addWidget(lblFollasOcultas, 0, 2, 1, 1)
+        maia.addWidget(self.lstVisibles, 1, 0, 5, 1)
+        maia.addWidget(self.lstOcultos, 1, 2, 5, 1)
+        maia.addWidget(btnOcultar, 1, 1, 1, 1)
+        maia.addWidget(btnMostrar, 3, 1, 1, 1)
+        maia.addWidget(controlInerte, 7, 2, 1, 1)
+        maia.addWidget(btnPechar, 7, 2, 1, 1)
 
-        #Creamos una referencia a un widget y le damos como layout a "CaixaH"
-        #De esa manera podremos observar los bloques coloreados
-        wid = QWidget()
-        wid.setLayout(caixaH)
-        self.setCentralWidget(wid)
-
+        container = QWidget()
+        container.setLayout(maia)
+        self.setCentralWidget(container)
         self.show()
 
+    def on_btnMostrar_clicked(self):
+        indices = self.lstOcultos.selectedIndexes()
+        if indices:
+            self.modeloListaVisibles.follas.append(self.modeloListaOcultos.follas[indices[0].row()])
+            del self.modeloListaOcultos.follas[indices[0].row()]
+            self.modeloListaVisibles.layoutChanged.emit()
+            self.modeloListaOcultos.layoutChanged.emit()
+            self.lstOcultos.clearSelection()
+
+    def on_btnOcultar_clicked(self):
+        indices = self.lstVisibles.selectedIndexes()
+        if indices:
+            self.modeloListaOcultos.follas.append(self.modeloListaVisibles.follas[indices[0].row()])
+            del self.modeloListaVisibles.follas[indices[0].row()]
+            self.modeloListaVisibles.layoutChanged.emit()
+            self.modeloListaOcultos.layoutChanged.emit()
+            self.lstVisibles.clearSelection()
 
 
 if __name__ == "__main__":
     aplicacion = QApplication(sys.argv)
-    ventana = Interfaz()
+    fiestra = ExemploListasIntercambiables()
     aplicacion.exec()
