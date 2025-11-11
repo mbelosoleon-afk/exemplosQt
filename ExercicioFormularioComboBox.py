@@ -44,9 +44,10 @@ class ExemploInterfaceComboBox(QMainWindow):
         maia.addWidget(clasificador, 0, 1, 1, 1)
         self.tvwTaboa = QTableView()
         self.tvwTaboa.setSelectionMode(QTableView.SelectionMode.SingleSelection)
-        self.seleccion = self.tvwTaboa.selectionModel()
         self.modelo = ModeloTaboa(datos)
         self.tvwTaboa.setModel(self.modelo)
+        self.seleccion = self.tvwTaboa.selectionModel()
+        self.seleccion.selectionChanged.connect(self.on_tvwTaboa_selectionChanged)
         clasificador.addTab(self.tvwTaboa, "Taboa")
         txeOutroCadroTexto = QTextEdit()
         clasificador.addTab(txeOutroCadroTexto, "Cadro texto")
@@ -77,6 +78,11 @@ class ExemploInterfaceComboBox(QMainWindow):
     def on_cmbComboBox_currentTextChanged(self, texto):
         print("O combo ten seleccionado o texto: " + texto)
 
+    def on_tvwTaboa_selectionChanged(self):
+        indice = self.tvwTaboa.selectedIndexes()
+        if indice is not None:
+            print(self.modelo.taboa[indice[0].row()][indice[0].column()])
+            self.txeAreaTexto.setPlainText(self.modelo.taboa[indice[0].row()][indice[0].column()])
 if __name__ == "__main__":
     aplicacion = QApplication(sys.argv)
     fiestra = ExemploInterfaceComboBox()
