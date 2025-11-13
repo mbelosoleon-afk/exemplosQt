@@ -5,8 +5,9 @@ from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QMainWindow, QApplication,
 class exemploBox (QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Exemplo con Box")
+        self.setWindowTitle("Exemplo con Box") #Título de la ventana
 
+        #Ventana actual
         caixaH = QHBoxLayout()
 
         #Bloque 1
