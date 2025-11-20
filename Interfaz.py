@@ -1,10 +1,8 @@
 import sys
-from mimetypes import inited
 
 import modeloLista
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QLabel, QLineEdit, QVBoxLayout, QWidget, QCheckBox,
-                             QHBoxLayout, QListView, QGridLayout, QListWidget)
+from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QLabel, QWidget, QListView, QGridLayout)
 
 class ListaIntercambiable(QMainWindow):
     def __init__(self):
@@ -19,9 +17,9 @@ class ListaIntercambiable(QMainWindow):
         lblFollasVisibles = QLabel("Follas Visibles")
         lblFollasOcultas = QLabel("Follas Ocultas")
 
-        btnMOstrar = QPushButton("<<Mostrar")
+        btnMOstrar = QPushButton("<-Mostrar")
         btnMOstrar.clicked.connect(self.on_btnMostrar_clicked)
-        btnOcultar = QPushButton("Ocultar>>")
+        btnOcultar = QPushButton("Ocultar->")
         btnOcultar.clicked.connect(self.on_btnOcultar_clicked)
         btnCerrar = QPushButton("Cerrar")
         btnCerrar.clicked.connect(self.on_btnCerrar_clicked)
