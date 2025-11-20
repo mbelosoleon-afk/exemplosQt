@@ -8,8 +8,6 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow,
                              QHBoxLayout)
 
 
-
-
 class FiestraPrincipal (QMainWindow):
     def __init__(self):
         super().__init__()
@@ -96,14 +94,14 @@ class FiestraPrincipal (QMainWindow):
 
 
     def on_clicked_editar(self):
-        print(self.cmbNumeroAlbara.currentText())
+        #print(self.cmbNumeroAlbara.currentText())
         self.txeCadroTexto.append("Numero Albará: " + self.cmbNumeroAlbara.currentText() + ", Numero Cliente: " + self.txtNumeroCliente.text() + ", Apelidos: " + self.txtApelidosCliente.text() + ", Data: " + self.txtDataAlbara.text() + ", Nome Cliente: " + self.txtNomeCliente.text())
 
     def on_cmbNumeroAlbara_currentIndexChanged(self):
         indice = self.cmbNumeroAlbara.currentIndex()
         if indice is not None:
             contido = self.albaras[indice]
-            print(contido)
+            #print(contido)
             self.txtDataAlbara.setText(contido[1])
             self.txtNumeroCliente.setText(contido[2])
             self.txtNomeCliente.setText(contido[3])
