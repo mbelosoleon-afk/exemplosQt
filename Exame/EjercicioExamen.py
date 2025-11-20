@@ -1,4 +1,5 @@
 import sys
+from mimetypes import inited
 from time import sleep
 
 from PyQt6.QtCore import Qt
@@ -95,12 +96,8 @@ class FiestraPrincipal (QMainWindow):
 
 
     def on_clicked_editar(self):
-        contido = []
-        contido.append(self.cmbNumeroAlbara.currentText())
-        contido.append(self.txtDataAlbara.text())
-        contido.append(self.txtNumeroCliente.text())
-        contido.append(self.txtApelidosCliente.text())
-        self.txeCadroTexto.append(str(contido))
+        print(self.cmbNumeroAlbara.currentText())
+        self.txeCadroTexto.append("Numero Albará: " + self.cmbNumeroAlbara.currentText() + ", Numero Cliente: " + self.txtNumeroCliente.text() + ", Apelidos: " + self.txtApelidosCliente.text() + ", Data: " + self.txtDataAlbara.text() + ", Nome Cliente: " + self.txtNomeCliente.text())
 
     def on_cmbNumeroAlbara_currentIndexChanged(self):
         indice = self.cmbNumeroAlbara.currentIndex()
