@@ -23,7 +23,7 @@ class FiestraPrincipal (QMainWindow):
 
         gpbCliente = QGroupBox("Albará") #Widget contenedor que se usa para agrupar otros widget
         maia.addWidget(gpbCliente,0,0,3,3) #Añades ese contenedor al Layout principal
-        maiaGroup = QGridLayout() #Creas nu layout interno
+        maiaGroup = QGridLayout() #Creas un layout interno
         gpbCliente.setLayout(maiaGroup) #Establece el maiaGroup como administrador del Layout
 
         #Creamos los elementos tipo QLabel

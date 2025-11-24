@@ -14,7 +14,6 @@ class FiestraPrincipal(QMainWindow):
 
         self.lista_provincias = ["A Coruña", "Lugo", "Ourense", "Pontevedra"] # Lista de provincias
 
-
         gpbCliente = QGroupBox("Cliente")
 
         self.lblNumeroCliente = QLabel("Número Cliente")
@@ -162,7 +161,6 @@ class FiestraPrincipal(QMainWindow):
         lineas = self.txeClientes.toPlainText().strip().split("\n")  # Obtemos todo o texto e dividimos en liñas separadas por saltos de liña
 
         novas = [liña for liña in lineas if liña.split(",")[0].strip() != numero_borrar] # nueva lista sin las líneas que coinciden con el número de cliente
-
 
         self.txeClientes.setPlainText("\n".join(novas)) # Reescribimos o QTextEdit coas liñas non borradas
 
