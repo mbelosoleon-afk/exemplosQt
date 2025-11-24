@@ -1,5 +1,5 @@
 import sys
-import CaixaCor
+from ExemplosClase import CaixaCor
 from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QMainWindow, QApplication, QWidget
 
 class exemploBox (QMainWindow):

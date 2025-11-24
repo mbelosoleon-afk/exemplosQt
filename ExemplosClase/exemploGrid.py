@@ -1,6 +1,6 @@
 ﻿import sys
-import CaixaCor
-from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QMainWindow, QApplication, QWidget, QGridLayout
+from ExemplosClase import CaixaCor
+from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QGridLayout
 
 
 class ExemploBox (QMainWindow): #QMainWindow es la base de la ventana principal, donde colocar menús, barras etc
@@ -13,11 +13,11 @@ class ExemploBox (QMainWindow): #QMainWindow es la base de la ventana principal,
 
         #El resto de objetos + su forma de estructurarse:
         #(widget,fila,columna,filas_ocupadas,columnas_ocupadas)
-        maia.addWidget(CaixaCor.CaixaCor("blue"), 0,1,1,2)
-        maia.addWidget(CaixaCor.CaixaCor("green"),1,0,2,1)
-        maia.addWidget(CaixaCor.CaixaCor("pink"),1,1,1,2)
-        maia.addWidget(CaixaCor.CaixaCor("orange"),2,1,1,1)
-        maia.addWidget(CaixaCor.CaixaCor("yellow"),2,2,1,1)
+        maia.addWidget(CaixaCor.CaixaCor("blue"), 0, 1, 1, 2)
+        maia.addWidget(CaixaCor.CaixaCor("green"), 1, 0, 2, 1)
+        maia.addWidget(CaixaCor.CaixaCor("pink"), 1, 1, 1, 2)
+        maia.addWidget(CaixaCor.CaixaCor("orange"), 2, 1, 1, 1)
+        maia.addWidget(CaixaCor.CaixaCor("yellow"), 2, 2, 1, 1)
 
         #Contenedor que recoge todos los objetos anteriores
         container = QWidget()

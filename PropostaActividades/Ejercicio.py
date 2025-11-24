@@ -19,7 +19,6 @@ from PyQt6.QtGui import QStandardItemModel, QStandardItem
 from PyQt6.QtCore import Qt
 
 
-
 class Ventana(QMainWindow):
     def __init__(self):
         super().__init__()
