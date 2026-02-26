@@ -49,6 +49,7 @@ class FiestraPrincipal(QMainWindow):
         gpbCliente.setLayout(maia)
         layout_principal.addWidget(gpbCliente)
 
+
         layout_medio = QHBoxLayout()
         layout_principal.addLayout(layout_medio)
 

@@ -1,7 +1,7 @@
 import sys
 from time import sleep
 
-import Ventana2
+import saudo2
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QLabel, QLineEdit, QVBoxLayout, QWidget, QCheckBox,
                              QHBoxLayout)
@@ -37,7 +37,7 @@ class Ventana1(QMainWindow):
 
     def cambio_ventana(self):
         if self.ventana_secundaria is None:  # si la referencia a la otra ventana  es nula
-            self.ventana_secundaria = Ventana2.Ventana2(self)  # crea una referencia a la otra ventana
+            self.ventana_secundaria = saudo2.Ventana2(self)  # crea una referencia a la otra ventana
         self.hide()  # se oculta la ventana 1
         self.ventana_secundaria.show()  # muestra la ventana 2
 
